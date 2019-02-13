@@ -6,8 +6,10 @@ package com.company;
 public class Selection implements Example {
 
     public static void main(String[] args) {
+        System.out.println("11");
         String[] a=In.readStrings();
         Selection test=new Selection();
+
         test.sort(a);
         assert test.isSorted(a);
         test.show(a);

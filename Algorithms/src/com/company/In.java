@@ -208,7 +208,9 @@ public final class In {
      * @throws IllegalArgumentException if {@code scanner} is {@code null}
      */
     public In(Scanner scanner) {
-        if (scanner == null) throw new IllegalArgumentException("scanner argument is null");
+        if (scanner == null) {
+            throw new IllegalArgumentException("scanner argument is null");
+        }
         this.scanner = scanner;
     }
 
@@ -309,8 +311,9 @@ public final class In {
      * @return the remainder of this input stream, as a string
      */
     public String readAll() {
-        if (!scanner.hasNextLine())
+        if (!scanner.hasNextLine()) {
             return "";
+        }
 
         String result = scanner.useDelimiter(EVERYTHING_PATTERN).next();
         // not that important to reset delimeter, since now scanner is empty
@@ -517,11 +520,13 @@ public final class In {
         // we could use readAll.trim().split(), but that's not consistent
         // since trim() uses characters 0x00..0x20 as whitespace
         String[] tokens = WHITESPACE_PATTERN.split(readAll());
-        if (tokens.length == 0 || tokens[0].length() > 0)
+        if (tokens.length == 0 || tokens[0].length() > 0) {
             return tokens;
+        }
         String[] decapitokens = new String[tokens.length-1];
-        for (int i = 0; i < tokens.length-1; i++)
+        for (int i = 0; i < tokens.length-1; i++) {
             decapitokens[i] = tokens[i+1];
+        }
         return decapitokens;
     }
 
@@ -673,7 +678,7 @@ public final class In {
      */
     public static void main(String[] args) {
         In in;
-        String urlName = "https://introcs.cs.princeton.edu/stdlib/InTest.txt";
+        String urlName = "https://introcs.cs.princeton.edu/java/data/1000words.txt";
 
         // read from a URL
         System.out.println("readAll() from URL " + urlName);
@@ -785,7 +790,7 @@ public final class In {
         System.out.println("readLine() from absolute Windows path");
         System.out.println("---------------------------------------------------------------------------");
         try {
-            in = new In("G:\\www\\introcs\\stdlib\\InTest.txt");
+            in = new In("E:\\intellij code\\StudyCode\\Algorithms\\src\\com\\company\\1000words.txt");
             while (!in.isEmpty()) {
                 String s = in.readLine();
                 System.out.println(s);
